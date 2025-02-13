@@ -1,6 +1,6 @@
 # Changelog
 
-### 2.0.0 (2025-02-20)
+### 2.0.0 (2025-02-13)
 -  Support custom Prometheus metrics collection.
 -  Support the rsyslogd service for centralized log collection.
 -  Support the Cronie service, replacing the cron script in v1.x with Cronie.

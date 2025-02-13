@@ -1,3 +1,3 @@
 site
 builddocs.sh
-mkdocs1.yml
+mkdocs-dev.yml

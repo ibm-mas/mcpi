@@ -28,4 +28,21 @@
 | Performance   Analytics | Performance Alert   Heatmap; Performance Message Details                                                     | - Identify performance issues at the application/pod level (**First Step**)                   |
 | Resource   Optimization | Pod Resource   Adjustment Recommendation to reduce footprint                                                 | Reducing   resource requests to minimize the overall deployment footprint.      |
 | Storage                 | List the insights of   Ephemeral Storage and Persistent Volume Claims                                        | Identify the Storage usage, availability troubleshooting, analysis, and alerts.                   |
-| About                   | List the current   version, Harmony Checker environment variables, and Node/Pod counts.                      | Environment variable   adjustment; Version verification                         |
+| About                   | List the current   version, Harmony Checker environment variables, and Node/Pod counts.                      | Verify the utility version, default setting and filter
+                        |
+
+
+### Use Cases: Minimizing footprint
+
+- Step 1: Eliminate the surplus nodes if exist
+- Step 2: Balance CPU and Memory Request%; Align CPU and Memory Requests to match hardware specifications, such as a ratio of 1:4 or 1:8.
+- Step 3: Continuously reduce the resource requests for pods/containers to enhance utilization. Ideally, aim for resource utilization that exceeds the resource requests and approaches 60–70% of the cluster capacity.
+- Repeat Step 1 – 3 if needed
+
+### Use Case: Performance troubleshooting and configuration checking
+
+- Step 1: Heatmap viewer provides the problematic pods and nodes
+- Step 2: Maximo CPI viewer provides the metric details 
+- Step 3: Identify the severity and functional impacts
+- Step 4: Vertically and horizontally adjust the pod/service/node and apply the recommended OpenShift Configuration if needed
+- Repeat Step 1 – 4 if needed

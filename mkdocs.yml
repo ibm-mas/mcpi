@@ -8,6 +8,22 @@ edit_uri: blob/master/docs/
 nav:
   - 'Maximo-CPI User Guide':
     - 'Running Maximo-CPI': maximo-cpi/running-maximo-cpi.md
+    - 'Harmony Check Data Collection': maximo-cpi/data-collection.md
+    - 'Harmony Check Data Review': maximo-cpi/data-review.md
+    - 'Custom Metric Collection': maximo-cpi/custom-metric-collection.md
+    - 'Logging Collection': logging.md
+    - 'Frequently Asked Questions': faq.md
+    #- 'Node Balance Data Collection': maximo-cpi/nb/nb.md
+    #- 'Root Cause Analysis': maximo-cpi/rca/rca.md
+    #- 'Database Metric Collection': maximo-cpi/db/db.md
+    #- 'Maximo-CPI Video Collection': maximo-cpi/video/mhc-video.md
+  - 'Changelog': changelog.md
+  - 'Diagnosis Handbook':
+    - 'Diagnosis Tool': diagnosis/diagnostic-tool.md
+    - 'Diagnosis Process': diagnosis/diagnostic-process.md
+  - 'Reference':
+    - 'Maximo Performance Wiki (Public)': https://ibm-mas.github.io/mas-performance/
+
   - 'Reference':
     - 'Maximo Performance Wiki (Public)': https://ibm-mas.github.io/mas-performance/
 

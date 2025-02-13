@@ -11,7 +11,7 @@ nav:
     - 'Harmony Checker Data Collection': maximo-cpi/data-collection.md
     - 'Harmony Checker Data Review': maximo-cpi/data-review.md
     - 'Custom Metric Collection': maximo-cpi/custom-metric-collection.md
-    - 'Logging Collection': logging.md
+    - 'Logging Collection': maximo-cpi/logging-collection.md
     - 'Frequently Asked Questions': faq.md
     #- 'Node Balance Data Collection': maximo-cpi/nb/nb.md
     #- 'Root Cause Analysis': maximo-cpi/rca/rca.md
@@ -23,7 +23,7 @@ nav:
     - 'Diagnosis Process': diagnosis/diagnostic-process.md
   - 'Reference':
     - 'Maximo Performance Wiki (Public)': https://ibm-mas.github.io/mas-performance/
-    
+
 theme:
   name: readthedocs 
   language: en

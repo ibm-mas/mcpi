@@ -1,6 +1,6 @@
 **Maximo-CPI Harmony Checker** is a new utility that use short and long term snapshots to addresses specific best practices for deployment of Maximo App Suite. It can assist in pinpointing areas that need improvement and provide actionable insights for optimizing the MAS deployment. 
 
-## Data Collection
+### Harmony Checker Data Collection
 
 - Enter into **Maximo-CPI** Container
     - in **docker**: `docker exec -it --user root mcpi bash`

@@ -1,4 +1,4 @@
-# Custom Metric Collection
+## Custom Metric Collection
 
 !!!info
    - This page outlines how to collect custom metrics via **Maximo-CPI**. 

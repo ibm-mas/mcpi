@@ -8,8 +8,8 @@ edit_uri: blob/master/docs/
 nav:
   - 'Maximo-CPI User Guide':
     - 'Running Maximo-CPI': maximo-cpi/running-maximo-cpi.md
-    - 'Harmony Check Data Collection': maximo-cpi/data-collection.md
-    - 'Harmony Check Data Review': maximo-cpi/data-review.md
+    - 'Harmony Checker Data Collection': maximo-cpi/data-collection.md
+    - 'Harmony Checker Data Review': maximo-cpi/data-review.md
     - 'Custom Metric Collection': maximo-cpi/custom-metric-collection.md
     - 'Logging Collection': logging.md
     - 'Frequently Asked Questions': faq.md

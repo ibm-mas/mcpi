@@ -1,8 +1,4 @@
-# Diagnostic Tool
-
-!!!info
-    - this page contains a list of tools that can be used for the database diagnosis    
-    - For any questions, please reach out via slack channel **[#maximo-cpi-support](https://ibm.enterprise.slack.com/archives/C07N1DNGGG2)** for support.
+## Diagnostic Tool
 
 ### App Diagnostic Utilities
 

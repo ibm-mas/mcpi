@@ -23,6 +23,25 @@ roleRef:
   name: cluster-admin
   apiGroup: rbac.authorization.k8s.io
 ---
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: mcpi-scc
+runAsUser:
+  type: MustRunAs
+  uid: 1002
+seLinuxContext:
+  type: MustRunAs
+fsGroup:
+  type: RunAsAny
+supplementalGroups:
+  type: RunAsAny
+readOnlyRootFilesystem: false
+volumes:
+- '*'
+users:
+- system:serviceaccount:maximo-cpi:default
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -41,14 +60,14 @@ spec:
       labels:
         app: mcpi
     spec:
+      securityContext:
+        runAsUser: 1002  # no specify, the openshift uses the restricted by default
       serviceAccountName: mcpi
+      imagePullSecrets:
+        - name: ibm-entitlement
       containers:
         - name: mcpi
-          image: quay.io/ibmmas/mcpi:latest
-          ports:
-            - name: http
-              containerPort: 8888
-              protocol: TCP
+          image: 'docker-na-public.artifactory.swg-devops.com/wiotp-docker-local/maximoappsuite/mas-autoscaling:latest'
           env:
             - name: INCLUSTER
               value: "true"
@@ -83,3 +102,21 @@ spec:
   tls:
     termination: edge
   wildcardPolicy: None
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcpi-rsyslog
+  namespace: maximo-cpi
+spec:
+  selector:
+    app: mcpi
+  ports:
+    - name: rsyslog-tcp
+      protocol: TCP
+      port: 10514
+      targetPort: 10514
+    - name: rsyslog-udp
+      protocol: UDP
+      port: 10514
+      targetPort: 10514

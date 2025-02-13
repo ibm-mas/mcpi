@@ -6,7 +6,8 @@ repo_url: https://github.com/ibm-mas/mcpi
 edit_uri: blob/master/docs/
 
 nav:
-  - 'Maximo-CPI User Guide': index.md
+  - 'Maximo-CPI User Guide':
+    - 'Running Maximo-CPI': maximo-cpi/running-maximo-cpi.md
   - 'Reference':
     - 'Maximo Performance Wiki (Public)': https://ibm-mas.github.io/mas-performance/
 

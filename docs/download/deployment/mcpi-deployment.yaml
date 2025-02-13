@@ -4,6 +4,25 @@ kind: Namespace
 metadata:
   name: maximo-cpi
 ---
+apiVersion: security.openshift.io/v1
+kind: SecurityContextConstraints
+metadata:
+  name: mcpi-scc
+runAsUser:
+  type: MustRunAs
+  uid: 1002
+seLinuxContext:
+  type: MustRunAs
+fsGroup:
+  type: RunAsAny
+supplementalGroups:
+  type: RunAsAny
+readOnlyRootFilesystem: false
+volumes:
+- '*'
+users:
+- system:serviceaccount:maximo-cpi:default
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,24 +41,15 @@ spec:
       labels:
         app: mcpi
     spec:
+      securityContext:
+        runAsUser: 1002  # no specify, the openshift uses the restricted by default
+      # serviceAccountName: mcpi
       containers:
         - name: mcpi
-          image: quay.io/ibmmas/mcpi:latest
-          ports:
-            - name: http
-              containerPort: 8888
-              protocol: TCP
+          image: 'quay.io/ibmmas/mcpi:latest'
           env:
             - name: INCLUSTER
               value: "true"
-# mount pvc (optional)
-#          volumeMounts:
-#            - name: mcpi-volume
-#              mountPath: /tmp/data
-#      volumes:
-#        - name: mcpi-volume
-#          persistentVolumeClaim:
-#            claimName: mcpi-pvc-claim
 ---
 apiVersion: v1
 kind: Service
@@ -71,3 +81,21 @@ spec:
   tls:
     termination: edge
   wildcardPolicy: None
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mcpi-rsyslog
+  namespace: maximo-cpi
+spec:
+  selector:
+    app: mcpi
+  ports:
+    - name: rsyslog-tcp
+      protocol: TCP
+      port: 10514
+      targetPort: 10514
+    - name: rsyslog-udp
+      protocol: UDP
+      port: 10514
+      targetPort: 10514

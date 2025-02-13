@@ -1,2 +1,2 @@
-# mcpi
-Maximo Cluster Performance Insights (maximo-cpi)
+# Maximo Cluster Performance Insights (Maximo-CPI Playbook)
+

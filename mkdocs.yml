@@ -23,11 +23,7 @@ nav:
     - 'Diagnosis Process': diagnosis/diagnostic-process.md
   - 'Reference':
     - 'Maximo Performance Wiki (Public)': https://ibm-mas.github.io/mas-performance/
-
-  - 'Reference':
-    - 'Maximo Performance Wiki (Public)': https://ibm-mas.github.io/mas-performance/
-
-
+    
 theme:
   name: readthedocs 
   language: en

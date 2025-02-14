@@ -12,7 +12,7 @@ nav:
     - 'Harmony Checker Data Review': maximo-cpi/data-review.md
     - 'Custom Metric Collection': maximo-cpi/custom-metric-collection.md
     - 'Logging Collection': maximo-cpi/logging-collection.md
-    - 'Scheduled Scaling': maximo-cpi/scheduled-ca
+    - 'Scheduled Scaling': maximo-cpi/scheduled-scaling.md
     - 'Slack Notification Sample': maximo-cpi/slack-notification-sample.md
     - 'Frequently Asked Questions': faq.md
     #- 'Node Balance Data Collection': maximo-cpi/nb/nb.md

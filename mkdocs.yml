@@ -14,6 +14,7 @@ nav:
     - 'Logging Collection': maximo-cpi/logging-collection.md
     - 'Scheduled Scaling': maximo-cpi/scheduled-scaling.md
     - 'Slack Notification Sample': maximo-cpi/slack-notification-sample.md
+    - 'Maximo-CPI CLI Commands': maximo-cpi/cli-commands.md
     - 'Frequently Asked Questions': faq.md
     #- 'Node Balance Data Collection': maximo-cpi/nb/nb.md
     #- 'Root Cause Analysis': maximo-cpi/rca/rca.md

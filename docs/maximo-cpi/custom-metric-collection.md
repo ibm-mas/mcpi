@@ -25,7 +25,7 @@ spec:
   podMetricsEndpoints:
     - interval: 30s
       path: /collectmetrics?name=sample
-      port: "8888"
+      port: http
   selector:
     matchLabels:
       app: mcpi

@@ -72,6 +72,9 @@ spec:
             - name: http
               containerPort: 8888
               protocol: TCP          
+          resources:
+            limits:
+              ephemeral-storage: "5Gi"             
           env:
             - name: INCLUSTER
               value: "true"

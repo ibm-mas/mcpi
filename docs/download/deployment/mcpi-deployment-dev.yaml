@@ -97,6 +97,7 @@ metadata:
   name: mcpi-rsyslog
   namespace: maximo-cpi
 spec:
+  type: NodePort
   selector:
     app: mcpi
   ports:

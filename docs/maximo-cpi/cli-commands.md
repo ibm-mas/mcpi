@@ -45,7 +45,10 @@ JSON format requires an argument `json` (e.g., `get-node-cpu.sh json`).
 | get-pvc-info.sh          | get all PVC info                                                                                                                                         | None                                |
 | get-toppods.sh           | get the top pods fron                                                                                                                                    |        TP_DTR and TP_TOPK           |
 
+
+
 ### Filter the json output by JQ query
 
+Consider to use the jq command to filter the output from the CLI. Here’s an example:
+
 - list the nodes whose max_cpu_1h > 40: `get-node-cpu.sh json|jq '[.[] | select(.max_cpu_1h > 40)]'`
-- 

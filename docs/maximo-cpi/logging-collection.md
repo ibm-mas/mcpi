@@ -114,6 +114,7 @@ if ($hostname contains "router-default-" and $msg contains "masinst1-tenant1-ui"
 }
 ```
 
+- restart the **rsyslogd** service by `supervisorctl restart rsyslogd`. 
 - Create a pipeline on Elasticsearch to break down the message field if needed. Below are sample messages from Elasticsearch:
 
 ![alt text](elasticsearch.png)

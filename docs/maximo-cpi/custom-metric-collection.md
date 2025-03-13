@@ -1,6 +1,6 @@
 ## Custom Metric Collection
 
-**Maximo-CPI** provides an API for collecting metrics in Prometheus format. It offers clients the flexibility to dynamically collect metrics for monitoring and troubleshooting. Clients can create custom scripts that output metrics in Prometheus format and utilize PodMonitor to collect these metrics through the Maximo-CPI API.
+**Maximo-CPI** provides an API for collecting metrics in Prometheus format. It offers clients the flexibility to dynamically collect metrics for monitoring and troubleshooting. Clients can create custom scripts (**bash or python**) that output metrics in Prometheus format and utilize PodMonitor to collect these metrics through the Maximo-CPI API.
 
 ### Steps how to collect custom metrics 
 

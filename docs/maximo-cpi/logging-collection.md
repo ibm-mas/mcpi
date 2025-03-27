@@ -68,7 +68,7 @@ Sample message in the log looks like below:
 10.5.19.131:5542 [12/Mar/2025:19:33:58.710] fe_sni~ be_secure:mas-masinst1-manage:masinst1-manage-tenant1/pod:masinst1-tenant1-ui-845f4ddd66-8m8bq:masinst1-tenant1-ui:https:172.30.237.99:9443 0/0/5/6/11 200 2531 - - --VN 35/13/1/1/0 0/0 "GET /maximo/webclient/javascript/dojo-20250311-1610/dojo/resources/dojo.css HTTP/1.1"
 ``` 
 
-- list the urls over 2 seconds from ui-access.log: `awk '{split($0, al, " "); split(al[5], rt, "/"); if (rt[5] > 200) print $0}' ui-access.log`
+- list the urls over 2 seconds from ui-access.log: `awk '{split($0, al, " "); split(al[5], rt, "/"); if (rt[5] > 2000) print $0}' ui-access.log`
 - list the urls whose status code not equal 200 or 302: `awk '{split($0, al, " "); if (al[6] != 200 && al[6] != 302) print $0}' ui-access.log`
 - list the urls whose resposne size over 2kb: `awk '{split($0, al, " "); if (al[7] > 2000) print $0}' ui-access.log`
 

@@ -10,6 +10,7 @@
 - Access the Maximo-CPI pod terminal and use the following command to verify the script's output via the API:
 `curl http://localhost:8888/collectmetrics?name=<custom script name>`. Below is an sample output
 ![alt text](collectmetrics-sample.png)
+- Verify Prometheus metric format: `promtool check metrics`
 - Create and apply a PodMonitor. Below is a sample PodMonitor CR:
   
 ```yaml

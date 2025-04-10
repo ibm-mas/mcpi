@@ -1,5 +1,8 @@
 # Changelog
 
+### 2.0.1 (2025-04-10)
+- Fix for Bug MASPERF-427: ingresslog-rsyslog.sh fails to use service ip if the current project is not `maximo-cpi` 
+
 ### 2.0.0 (2025-03-26)
 -  Support custom Prometheus metrics collection.
 -  Support the rsyslogd service for centralized log collection.

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# set the last minute date time
+LMDT=$(date -u -d '1 minutes ago' '+%Y-%m-%dT%H:%M')
+LMD=$(echo $LMDT |cut -d"T" -f1)
+
+MASINSTANCE="masinst1"
+MASNS="mas_${MASINSTANCE}_manage"
+LOGFILE="/var/log/rsyslog/${MASINSTANCE}/manage-lrquery-${LMD}.log"
+
+
+if [ ! -f "$LOGFILE" ]; then 
+    # echo "$LOGFILE does not exist!"
+    echo "# HELP mas_manage_lrq MAS Manage Long Run Query"
+    echo "# TYPE mas_manage_lrq gauge"
+    echo "mas_manage_lrq{mas_namespace=\"${MASNS}\",mas_pod=\"total\"} -1"
+    exit
+fi
+tmpfile=$(mktemp)
+grep "$LMDT" "$LOGFILE" |grep -v kubernetes > "${tmpfile}"
+
+#stats for mas_manage namespace in total
+rc=$(wc -l < "${tmpfile}")
+echo "# HELP mas_manage_lrq MAS Manage Long Run Query"
+echo "# TYPE mas_manage_lrq gauge"
+echo "mas_manage_lrq{mas_namespace=\"${MASNS}\",mas_pod=\"total\"} ${rc}"
+
+#break down by pods
+while read -r PODNAME
+do
+    rc=$(grep -c "${PODNAME}" "${tmpfile}")
+    echo "mas_manage_lrq{mas_namespace=\"${MASNS}\", mas_pod=\"${PODNAME}\"} ${rc}"
+done < <(grep "$LMDT" "${tmpfile}" |awk '{split($0, al, " "); print al[2]}'|sort |uniq)
+
+
+# remove tmpjson
+rm -rf "${tmpjson}"

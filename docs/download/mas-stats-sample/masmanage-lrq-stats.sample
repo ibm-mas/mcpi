@@ -33,5 +33,5 @@ do
 done < <(grep "$LMDT" "${tmpfile}" |awk '{split($0, al, " "); print al[2]}'|sort |uniq)
 
 
-# remove tmpjson
-rm -rf "${tmpjson}"
+# remove tmpfile
+rm -rf "${tmpfile}"

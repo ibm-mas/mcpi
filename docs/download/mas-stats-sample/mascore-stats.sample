@@ -66,6 +66,5 @@ do
 done
 
 
-# remove tmpjson
-# echo "${tmpfile}"
-rm -rf "${tmpjson}"
+# remove tmpfile
+rm -rf "${tmpfile}"

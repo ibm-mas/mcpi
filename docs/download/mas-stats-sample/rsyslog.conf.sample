@@ -1,0 +1,58 @@
+# Provides UDP syslog reception
+module(load="imudp")     
+input(type="imudp" port="10514")
+
+# Provides TCP syslog reception
+module(load="imtcp")
+input(type="imtcp" port="10514")
+
+#### GLOBAL DIRECTIVES ####
+
+# Where to place auxiliary files
+global(workDirectory="/var/log/rsyslog")
+
+
+# haproxy access log
+$template AccessLogs,"/var/log/rsyslog/haproxy-access.log"
+template(name="masmanage" type="string" string="/var/log/rsyslog/masinst1/mas-manage-%$YEAR%-%$MONTH%-%$DAY%.log")
+template(name="managelrquery" type="string" string="/var/log/rsyslog/masinst1/manage-lrquery-%$YEAR%-%$MONTH%-%$DAY%.log")
+template(name="mascore" type="string" string="/var/log/rsyslog/masinst1/mas-core-%$YEAR%-%$MONTH%-%$DAY%.log")
+#template(name="mongo" type="string" string="/var/log/rsyslog/masinst1/mongo-%$YEAR%-%$MONTH%-%$DAY%.log")
+template(name="mongolrquery" type="string" string="/var/log/rsyslog/masinst1/mongo-lrquery-%$YEAR%-%$MONTH%-%$DAY%.log")
+
+
+# mas core access log
+if ($hostname contains "router-default-" and $msg contains "mas-masinst1-core") then {
+    action(type="omfile" dynaFile="mascore")
+    stop
+}
+
+# mas manage ui access log
+if ($hostname contains "router-default-" and $msg contains "mas-masinst1-manage") then {
+    action(type="omfile" dynaFile="masmanage")
+    stop
+}
+
+# mongoce access log
+# no ingress log for mongodb connection
+#if ($hostname contains "router-default-" and $msg contains "mongoce") then {
+#    action(type="omfile" dynaFile="mongo")
+#    stop
+#}
+
+# manage long runing query log
+if ($syslogtag contains "manage-lrquery") then {
+    action(type="omfile" dynaFile="managelrquery")
+    stop
+}
+
+# mongo long runing query log
+if ($syslogtag contains "mongo-lrquery") then {
+    action(type="omfile" dynaFile="mongolrquery")
+    stop
+}
+
+
+# catch the rest
+# *.* ?AccessLogs
+*.* stop

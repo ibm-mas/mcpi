@@ -5,11 +5,14 @@ LMDT=$(date -u -d '1 days ago' '+%Y-%m-%dT%H:%M')
 LMD=$(echo $LMDT |cut -d"T" -f1)
 
 MASINSTANCE="masinst1"
+LOGDIR="/var/log/rsyslog/${MASINSTANCE}"
 ARCHIVELOG_DIR="/var/log/rsyslog/${MASINSTANCE}/archive"
 
 if [ ! -d "$ARCHIVELOG_DIR" ]; then
     mkdir -p "$ARCHIVELOG_DIR"
+    chown mhc:root "$ARCHIVELOG_DIR"
+    chmod 660 "$ARCHIVELOG_DIR"
 fi
 
-gzip "*-${LMD}.log" 2>/dev/null
-mv *.gz ARCHIVELOG_DIR 2>/dev/null
+gzip ${LOGDIR}/*-${LMD}.log
+mv ${LOGDIR}/*.gz ${ARCHIVELOG_DIR} 2>/dev/null

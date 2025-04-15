@@ -85,9 +85,9 @@ do
     # stats for mas_manage_responsetime per service
     rc=$(grep "${SERVICE}" "${tmpfile}" | awk '{split($0, al, " "); split(al[8], rt, "/"); print rt[5]}'|awk '{sum += $1} END {print sum}')
     if [ -n "${rc}" ]; then 
-        echo "mas_manage_responsetime{mas_namespace=\"${MASNS}\",service=\"${SERVICE}\"} ${rc}"
+        echo "mas_manage_responsetime{mas_namespace=\"${MASNS}\",service=\"${SV}\"} ${rc}"
     else
-        echo "mas_manage_responsetime{mas_namespace=\"${MASNS}\",service=\"${SERVICE}\"} 0"
+        echo "mas_manage_responsetime{mas_namespace=\"${MASNS}\",service=\"${SV}\"} 0"
     fi
 
     #break down by pods

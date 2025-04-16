@@ -5,7 +5,7 @@ LMDT=$(date -u -d '1 minutes ago' '+%Y-%m-%dT%H:%M')
 LMD=$(echo $LMDT |cut -d"T" -f1)
 
 MASINSTANCE="masinst1"
-MASNS="mas_${MASINSTANCE}_core"
+MASNS="mas-${MASINSTANCE}-core"
 LOGFILE="/var/log/rsyslog/${MASINSTANCE}/mas-core-${LMD}.log"
 
 

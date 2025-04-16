@@ -11,7 +11,7 @@ ARCHIVELOG_DIR="/var/log/rsyslog/${MASINSTANCE}/archive"
 if [ ! -d "$ARCHIVELOG_DIR" ]; then
     mkdir -p "$ARCHIVELOG_DIR"
     chown mhc:root "$ARCHIVELOG_DIR"
-    chmod 660 "$ARCHIVELOG_DIR"
+    chmod 775 "$ARCHIVELOG_DIR"
 fi
 
 gzip ${LOGDIR}/*-${LMD}.log

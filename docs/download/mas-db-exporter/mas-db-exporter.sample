@@ -6,7 +6,7 @@ source /opt/app-root/src/healthcheck/base.sh
 MAS_MANAGE_NS="mas-masinst1-manage"
 
 # verify mas namespace 
-if [ ! -z "$1" ]; then 
+if [ -n "$1" ]; then 
     MAS_MANAGE_NS=$1
 fi
 
@@ -14,7 +14,7 @@ PODNAME=$(oc get pods -n ${MAS_MANAGE_NS}|grep Running|grep maxinst|awk '{print 
 #echo ${PODNAME}
 tmpjson=$(mktemp)
 oc cp mas-db-exporter.sh ${MAS_MANAGE_NS}/${PODNAME}:/tmp/mas-db-exporter.sh 2>/dev/null
-oc exec -n $1 ${PODNAME} -- bash -c "bash /tmp/mas-db-exporter.sh" > ${tmpjson}
+oc exec -n ${MAS_MANAGE_NS} ${PODNAME} -- bash -c "bash /tmp/mas-db-exporter.sh" > ${tmpjson}
 
 # prometheus output
 echo "# HELP mas_manage_db_metric MAS Manage DB Metric"

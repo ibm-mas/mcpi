@@ -1,0 +1,61 @@
+# Provides UDP syslog reception
+module(load="imudp")     
+input(type="imudp" port="10514")
+
+# Provides TCP syslog reception
+module(load="imtcp")
+input(type="imtcp" port="10514")
+
+#### GLOBAL DIRECTIVES ####
+
+# Where to place auxiliary files
+global(workDirectory="/var/log/rsyslog")
+
+set $.masinstancename = "masinst1";
+set $.mascore_pattern = "mas-" & $.masinstancename & "-core";
+set $.masmange_pattern = "mas-" & $.masinstancename & "-manage";
+
+# haproxy access log
+$template AccessLogs,"/var/log/rsyslog/haproxy-access.log"
+template(name="masmanage" type="string" string="/var/log/rsyslog/%$.masinstancename%/mas-manage-%$YEAR%-%$MONTH%-%$DAY%.log")
+template(name="managelrquery" type="string" string="/var/log/rsyslog/%$.masinstancename%/manage-lrquery-%$YEAR%-%$MONTH%-%$DAY%.log")
+template(name="mascore" type="string" string="/var/log/rsyslog/%$.masinstancename%/mas-core-%$YEAR%-%$MONTH%-%$DAY%.log")
+#template(name="mongo" type="string" string="/var/log/rsyslog/%$.masinstancename%/mongo-%$YEAR%-%$MONTH%-%$DAY%.log")
+template(name="mongolrquery" type="string" string="/var/log/rsyslog/%$.masinstancename%/mongo-lrquery-%$YEAR%-%$MONTH%-%$DAY%.log")
+
+
+# mas core access log
+if ($hostname contains "router-default-" and $msg contains $.mascore_pattern) then {
+    action(type="omfile" dynaFile="mascore")
+    stop
+}
+
+# mas manage ui access log
+if ($hostname contains "router-default-" and $msg contains $.masmanage_pattern) then {
+    action(type="omfile" dynaFile="masmanage")
+    stop
+}
+
+# mongoce access log
+# no ingress log for mongodb connection
+#if ($hostname contains "router-default-" and $msg contains "mongoce") then {
+#    action(type="omfile" dynaFile="mongo")
+#    stop
+#}
+
+# manage long runing query log
+if ($syslogtag contains "manage-lrquery") then {
+    action(type="omfile" dynaFile="managelrquery")
+    stop
+}
+
+# mongo long runing query log
+if ($syslogtag contains "mongo-lrquery") then {
+    action(type="omfile" dynaFile="mongolrquery")
+    stop
+}
+
+
+# catch the rest
+# *.* ?AccessLogs
+*.* stop

@@ -13,7 +13,7 @@ fi
 PODNAME=$(oc get pods -n ${MAS_MANAGE_NS}|grep Running|grep maxinst|awk '{print $1}')
 #echo ${PODNAME}
 tmpjson=$(mktemp)
-oc cp mas-db-exporter.sh ${MAS_MANAGE_NS}/${PODNAME}:/tmp/mas-db-exporter.sh 2>/dev/null
+oc cp /opt/app-root/src/db-exporter/mas-db-exporter.sh ${MAS_MANAGE_NS}/${PODNAME}:/tmp/mas-db-exporter.sh 2>/dev/null
 oc exec -n ${MAS_MANAGE_NS} ${PODNAME} -- bash -c "bash /tmp/mas-db-exporter.sh" > ${tmpjson}
 
 # prometheus output

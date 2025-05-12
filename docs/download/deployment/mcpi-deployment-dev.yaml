@@ -55,7 +55,7 @@ spec:
               protocol: TCP
           resources:
             limits:
-              ephemeral-storage: "10Gi"      
+              ephemeral-storage: "30Gi"      
           env:
             - name: INCLUSTER
               value: "true"

@@ -7,7 +7,7 @@ It offers a few scripts that enable/disable ingressor log and manage pod log:
 
 - `ingresslog-rsyslog.sh` to forward haproxy access log to rsyslog server. 
 - `ingresslog-disable.sh` to disable the log forwarding.
-- `ingresslog-container` to keep the log in the haproxy container only.
+- `ingresslog-container.sh` to keep the log in the haproxy container only.
 - `manage-lrquery-enable.sh <manage namespace name>` to forward the long running query. 
 - `manage-lrquery-disable.sh  <manage namespace name>` to disable the log forwarding.
 

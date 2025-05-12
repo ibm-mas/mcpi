@@ -1,5 +1,9 @@
 # Changelog
 
+### 2.0.2 
+- Fix for Bug: the default logrotation daily cron stops a custom conf
+- New Feature MASPERF-442: Support MAS-HTTP-LRQ-Exporter for mas core and manage app
+
 ### 2.0.1 (2025-04-10)
 - Fix for Bug MASPERF-427: ingresslog-rsyslog.sh fails to use service ip if the current project is not `maximo-cpi` 
 

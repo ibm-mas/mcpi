@@ -22,11 +22,14 @@ nav:
     #- 'Database Metric Collection': maximo-cpi/db/db.md
     #- 'Maximo-CPI Video Collection': maximo-cpi/video/mhc-video.md
   - 'Changelog': changelog.md
+  - 'Maximo-CPI Observability':
+    - 'MAS-HTTP-LRQ Exporter': observability/mas-http-lrq-exporter.md
+    - 'MAS-DB Exporter': observability/mas-db-exporter.md
   - 'Diagnosis Handbook':
     - 'Diagnosis Tool': diagnosis/diagnostic-tool.md
     - 'Diagnosis Process': diagnosis/diagnostic-process.md
   - 'Reference':
-    - 'Maximo Performance Wiki (Public)': https://ibm-mas.github.io/mas-performance/
+    - 'Maximo Application Suite (MAS) Performance Wiki': https://ibm-mas.github.io/mas-performance/
 
 theme:
   name: readthedocs 

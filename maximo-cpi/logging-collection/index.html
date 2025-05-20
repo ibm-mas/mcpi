@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm-mas.github.io/mcpi/maximo-cpi/logging-collection/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Logging Collection - Maximo Cluster Performance Insight</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Logging Collection";
+        var mkdocs_page_input_path = "maximo-cpi/logging-collection.md";
+        var mkdocs_page_url = "/mcpi/maximo-cpi/logging-collection/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Maximo Cluster Performance Insight
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Maximo-CPI User Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../running-maximo-cpi/">Running Maximo-CPI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data-collection/">Harmony Checker Data Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data-review/">Harmony Checker Data Review</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom-metric-collection/">Custom Metric Collection</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Logging Collection</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#forward-openshift-ingressor-log-to-maximo-cpi">Forward OpenShift Ingressor Log to Maximo-CPI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#forward-maximo-manage-long-running-query-to-maximo-cpi">Forward Maximo Manage Long Running Query to Maximo-CPI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#useful-commands-to-filter-the-local-log">Useful commands to filter the local log</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#forward-the-log-from-rsyslog-to-elasticsearch">Forward the log from Rsyslog to Elasticsearch</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../scheduled-scaling/">Scheduled Scaling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../slack-notification-sample/">Slack Notification Sample</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../supervisor/">Supervisor Service</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cli-commands/">Maximo-CPI CLI Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../changelog/">Changelog</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Maximo-CPI Observability</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-http-lrq-exporter/">MAS-HTTP-LRQ Exporter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-db-exporter/">MAS-DB Exporter</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Diagnosis Handbook</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-tool/">Diagnosis Tool</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-process/">Diagnosis Process</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://ibm-mas.github.io/mas-performance/">Maximo Application Suite (MAS) Performance Wiki</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Maximo Cluster Performance Insight</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Maximo-CPI User Guide</li>
+      <li class="breadcrumb-item active">Logging Collection</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ibm-mas/mcpi/blob/master/docs/maximo-cpi/logging-collection.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h2 id="logging-collection">Logging Collection<a class="headerlink" href="#logging-collection" title="Permanent link"></a></h2>
+<p><strong>Maximo-CPI</strong> can be used as a <strong>rsyslog</strong> server. The default service port is <code>10514</code>. <br>
+<strong>Note</strong>: Although rsyslog supports multiple input/output models, only the <code>omelasticsearch</code> module is available inside the container. <br>
+It offers a few scripts that enable/disable ingressor log and manage pod log:</p>
+<ul>
+<li><code>ingresslog-rsyslog.sh</code> to forward haproxy access log to rsyslog server. </li>
+<li><code>ingresslog-disable.sh</code> to disable the log forwarding.</li>
+<li><code>ingresslog-container.sh</code> to keep the log in the haproxy container only.</li>
+<li><code>manage-lrquery-enable.sh &lt;manage namespace name&gt;</code> to forward the long running query. </li>
+<li><code>manage-lrquery-disable.sh  &lt;manage namespace name&gt;</code> to disable the long running query forwarding.</li>
+</ul>
+<h3 id="forward-openshift-ingressor-log-to-maximo-cpi">Forward OpenShift Ingressor Log to Maximo-CPI<a class="headerlink" href="#forward-openshift-ingressor-log-to-maximo-cpi" title="Permanent link"></a></h3>
+<ul>
+<li>Openshift uses haproxy as the ingressor controller. </li>
+<li>Use the command <code>ingresslog-rsyslog.sh</code> to forward haproxy access log to <strong>Maximo-CPI</strong> pod. Use the command <code>ingresslog-disable.sh</code> to disable the log forwarding. </li>
+<li>Modify <code>/etc/rsyslog.conf</code> for filtering, log location or redirection if needed. Code Snippet for the current setting:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># Provides UDP syslog reception</span>
+module<span class="o">(</span><span class="nv">load</span><span class="o">=</span><span class="s2">"imudp"</span><span class="o">)</span><span class="w">     </span>
+input<span class="o">(</span><span class="nv">type</span><span class="o">=</span><span class="s2">"imudp"</span><span class="w"> </span><span class="nv">port</span><span class="o">=</span><span class="s2">"10514"</span><span class="o">)</span>
+
+<span class="c1"># Provides TCP syslog reception</span>
+module<span class="o">(</span><span class="nv">load</span><span class="o">=</span><span class="s2">"imtcp"</span><span class="o">)</span>
+input<span class="o">(</span><span class="nv">type</span><span class="o">=</span><span class="s2">"imtcp"</span><span class="w"> </span><span class="nv">port</span><span class="o">=</span><span class="s2">"10514"</span><span class="o">)</span>
+
+<span class="c1"># Send local log messages to a remote server </span>
+<span class="c1"># module(load="omfwd")</span>
+<span class="c1"># *.*    @logserver.example.com:514  # UDP forwarding</span>
+<span class="c1"># *.*    @@logserver.example.com:514 # TCP forwarding</span>
+
+<span class="c1">#### GLOBAL DIRECTIVES ####</span>
+
+<span class="c1"># Where to place auxiliary files</span>
+global<span class="o">(</span><span class="nv">workDirectory</span><span class="o">=</span><span class="s2">"/var/log/rsyslog"</span><span class="o">)</span>
+
+
+<span class="c1"># haproxy access log</span>
+<span class="nv">$template</span><span class="w"> </span>AccessLogs,<span class="s2">"/var/log/rsyslog/haproxy-access.log"</span>
+<span class="nv">$template</span><span class="w"> </span>msgOnly,<span class="w"> </span><span class="s2">"%msg%\n"</span>
+
+<span class="c1"># manage ui access log</span>
+<span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="nv">$hostname</span><span class="w"> </span>contains<span class="w"> </span><span class="s2">"router-default-"</span><span class="w"> </span>and<span class="w"> </span><span class="nv">$msg</span><span class="w"> </span>contains<span class="w"> </span><span class="s2">"masinst1-tenant1-ui"</span><span class="o">)</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>action<span class="o">(</span><span class="nv">type</span><span class="o">=</span><span class="s2">"omfile"</span><span class="w"> </span><span class="nv">file</span><span class="o">=</span><span class="s2">"/var/log/rsyslog/ui-access.log"</span><span class="w"> </span><span class="nv">template</span><span class="o">=</span><span class="s2">"msgOnly"</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="c1"># manage long runing query log</span>
+<span class="k">if</span><span class="w"> </span><span class="o">(</span><span class="nv">$syslogtag</span><span class="w"> </span>contains<span class="w"> </span><span class="s2">"manage-lrquery"</span><span class="o">)</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="o">{</span>
+<span class="w">    </span>action<span class="o">(</span><span class="nv">type</span><span class="o">=</span><span class="s2">"omfile"</span><span class="w"> </span><span class="nv">file</span><span class="o">=</span><span class="s2">"/var/log/rsyslog/manage-lrquery.log"</span><span class="w"> </span><span class="nv">template</span><span class="o">=</span><span class="s2">"msgOnly"</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="c1"># catch the rest</span>
+*.*<span class="w"> </span>?AccessLogs
+<span class="p">&amp;</span><span class="w"> </span>~
+</code></pre></div>
+<h3 id="forward-maximo-manage-long-running-query-to-maximo-cpi">Forward Maximo Manage Long Running Query to Maximo-CPI<a class="headerlink" href="#forward-maximo-manage-long-running-query-to-maximo-cpi" title="Permanent link"></a></h3>
+<ul>
+<li>Maximo Manage app will record any query over 2 seconds into the log. Use the command <code>manage-lrquery-enable.sh &lt;manage namespace name&gt;</code> to forward the long running query to <strong>Maximo-CPI</strong> pod. Use <code>manage-lrquery-disable.sh  &lt;manage namespace name&gt;</code> to disable the log forwarding.</li>
+</ul>
+<h3 id="useful-commands-to-filter-the-local-log">Useful commands to filter the local log<a class="headerlink" href="#useful-commands-to-filter-the-local-log" title="Permanent link"></a></h3>
+<p>Sample message in the log looks like below:
+</p><div class="highlight"><pre><span></span><code>10.5.19.131:5542 [12/Mar/2025:19:33:58.710] fe_sni~ be_secure:mas-masinst1-manage:masinst1-manage-tenant1/pod:masinst1-tenant1-ui-845f4ddd66-8m8bq:masinst1-tenant1-ui:https:172.30.237.99:9443 0/0/5/6/11 200 2531 - - --VN 35/13/1/1/0 0/0 "GET /maximo/webclient/javascript/dojo-20250311-1610/dojo/resources/dojo.css HTTP/1.1"
+</code></pre></div>
+<ul>
+<li>list the urls over 2 seconds from ui-access.log: <code>awk '{split($0, al, " "); split(al[5], rt, "/"); if (rt[5] &gt; 2000) print $0}' ui-access.log</code></li>
+<li>list the urls whose status code not equal 200 or 302: <code>awk '{split($0, al, " "); if (al[6] != 200 &amp;&amp; al[6] != 302) print $0}' ui-access.log</code></li>
+<li>list the urls whose resposne size over 2kb: <code>awk '{split($0, al, " "); if (al[7] &gt; 2000) print $0}' ui-access.log</code></li>
+</ul>
+<h3 id="forward-the-log-from-rsyslog-to-elasticsearch">Forward the log from Rsyslog to Elasticsearch<a class="headerlink" href="#forward-the-log-from-rsyslog-to-elasticsearch" title="Permanent link"></a></h3>
+<ul>
+<li>Modify <code>/etc/rsyslog.conf</code> to forward the log to Elasticsearch. Code Snippet:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>template(name="plain-syslog"
+  type="list"
+  option.json="on") {
+    constant(value="{")
+      constant(value="\"@timestamp\":\"")  property(name="timereported" dateFormat="rfc3339")
+      constant(value="\",\"host\":\"")     property(name="hostname")
+      constant(value="\",\"severity\":\"") property(name="syslogseverity-text")
+      constant(value="\",\"facility\":\"") property(name="syslogfacility-text")
+      constant(value="\",\"tag\":\"")      property(name="syslogtag")
+      constant(value="\",\"message\":\"")  property(name="msg")
+    constant(value="\"}")
+}
+
+
+# manage ui access log
+if ($hostname contains "router-default-" and $msg contains "masinst1-tenant1-ui") then {
+    action(type="omfile" file="/var/log/rsyslog/ui-access.log" template="msgOnly")
+    action(type="omelasticsearch"
+           server="mas-es-internal-http.eck.svc.cluster.local:9200"       
+           template="plain-syslog"
+           searchIndex="ui-index"
+           searchType=""
+           bulkmode="on"
+           queue.type="linkedlist"
+           queue.size="5000"
+           queue.dequeuebatchsize="300"
+           usehttps="on"              
+           allowunsignedcerts="on"
+           skipverifyhost="on"
+           uid="&lt;elastic username&gt;"          
+           pwd="&lt;elastic password&gt;"          
+           action.resumeRetryCount="3" 
+           errorfile="/var/log/rsyslog/el-error.log"
+           )
+}
+</code></pre></div>
+<ul>
+<li>restart the <strong>rsyslogd</strong> service by <code>supervisorctl restart rsyslogd</code>. </li>
+<li>Create a pipeline on Elasticsearch to break down the message field if needed. Below are sample messages from Elasticsearch:</li>
+</ul>
+<p><img alt="alt text" src="../elasticsearch.png"></p></div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ibm-mas/mcpi" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../custom-metric-collection/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../scheduled-scaling/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

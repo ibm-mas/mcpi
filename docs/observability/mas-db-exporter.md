@@ -9,7 +9,7 @@
 
 **Below are the scripts/command to enable and disable the exporter:**
 
-- `mas-manage-db-exporter-enable.sh <manage namespace name>` to enable the exporter. 
+- `mas-manage-db-exporter-enable.sh <manage namespace name> <db type>` to enable the exporter. **Note:** Valid db type values are **db2**, **ora**, **sqs**
 - `mas-manage-db-exporter-disable.sh <manage namespace name>` to disable the exporter. 
 
 **Notes:**

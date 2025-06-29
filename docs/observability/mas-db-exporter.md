@@ -1,6 +1,3 @@
-!!! warning 
-    Upcoming Features in 2.1.0 release. EDT: June 30, 2025. 
-
 ## MAS-DB Exporter
 
 **Maximo-CPI** offers several Prometheus exporters, including the **MAS-DB Exporter**. This exporter is used to collect DB metrics e.g. cpu, memory, cache hit ratio, direct reads writes. The exporter supports DB2, Oracle and MS SQL Server.

@@ -1,6 +1,3 @@
-!!! warning 
-    **Upcoming Features in 2.1.0 release. EDT: June 30, 2025.**
-
 ## MAS-HTTP-LRQ Exporter
 
 **Maximo-CPI** offers several Prometheus exporters, including the **MAS-HTTP-LRQ Exporter**. This exporter is used to collect metrics related to HTTP requests, slow calls, and long-running queries for both **MAS Core** and **Manage** app.

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm-mas.github.io/mcpi/maximo-cpi/scheduled-scaling/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Scheduled Scaling - Maximo Cluster Performance Insight</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Scheduled Scaling";
+        var mkdocs_page_input_path = "maximo-cpi/scheduled-scaling.md";
+        var mkdocs_page_url = "/mcpi/maximo-cpi/scheduled-scaling/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Maximo Cluster Performance Insight
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Maximo-CPI User Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../running-maximo-cpi/">Running Maximo-CPI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data-collection/">Harmony Checker Data Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data-review/">Harmony Checker Data Review</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom-metric-collection/">Custom Metric Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../logging-collection/">Logging Collection</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Scheduled Scaling</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../slack-notification-sample/">Slack Notification Sample</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../supervisor/">Supervisor Service</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cli-commands/">Maximo-CPI CLI Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../changelog/">Changelog</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Maximo-CPI Observability</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-http-lrq-exporter/">MAS-HTTP-LRQ Exporter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-db-exporter/">MAS-DB Exporter</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Diagnosis Handbook</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-tool/">Diagnosis Tool</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-process/">Diagnosis Process</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://ibm-mas.github.io/mas-performance/">Maximo Application Suite (MAS) Performance Wiki</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Maximo Cluster Performance Insight</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Maximo-CPI User Guide</li>
+      <li class="breadcrumb-item active">Scheduled Scaling</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ibm-mas/mcpi/blob/master/docs/maximo-cpi/scheduled-scaling.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h2 id="scheduled-scaling">Scheduled Scaling<a class="headerlink" href="#scheduled-scaling" title="Permanent link"></a></h2>
+<p><strong>Maximo-CPI</strong> includes a scheduled scaling feature with two scripts: <code>scale-manage.sh</code> and <code>mas-manage-scheduled-scaling-sample.sh</code>.</p>
+<p><strong>scale-manage.sh</strong>: the script to change the replica value based on manage bundle name</p>
+<ul>
+<li>Command Syntax: <code>scale-manage.sh &lt;namespace name&gt; &lt;manageworkspacecr name&gt; &lt;bundle name&gt; &lt;replica value&gt;</code>. e.g. <code>scale-manage.sh mas-masinst1-manage masinst1-tenant1 ui 5</code></li>
+<li>File located at <code>/opt/app-root/src/cron/scale-manage.sh</code></li>
+</ul>
+<p><strong>mas-manage-scheduled-scaling-sample.sh</strong>: the cron script to call <strong>scale-manage.sh</strong></p>
+<ul>
+<li>Sample file is located at <code>/opt/app-root/src/cron/hourly/mas-manage-scheduled-scaling-sample.sh</code>  </li>
+<li>Modify the file by updating the date, namespace name, managecr name, replica value to suit the needs. Sample Code Snippet
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="nv">current_hour</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+<span class="s2">"%H"</span><span class="k">)</span>
+
+<span class="c1"># scale up manage ui bundle replica to 5 at 8am.</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$current_hour</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"08"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="k">)</span><span class="s2"> - info: scaling up manage ui pods from 2 to 5"</span>
+<span class="w">    </span>scale-manage.sh<span class="w"> </span>mas-masinst1-manage<span class="w"> </span>masinst1-tenant1<span class="w"> </span>ui<span class="w"> </span><span class="m">5</span>
+<span class="k">fi</span>
+
+<span class="c1"># scale down manage ui bundle replica to 2 at 6pm. </span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">"</span><span class="nv">$current_hour</span><span class="s2">"</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"18"</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>date<span class="w"> </span><span class="s1">'+%Y-%m-%d %H:%M:%S'</span><span class="k">)</span><span class="s2"> - info: scaling down manage ui pods from 5 to 2"</span>
+<span class="w">    </span>scale-manage.sh<span class="w"> </span>mas-masinst1-manage<span class="w"> </span>masinst1-tenant1<span class="w"> </span>ui<span class="w"> </span><span class="m">2</span>
+<span class="k">fi</span>
+</code></pre></div></li>
+<li>Copy the script to the cron hourly folder: <code>cp /opt/app-root/src/cron/hourly/mas-manage-scheduled-scaling-sample.sh /etc/cron.hourly</code></li>
+<li><strong>Maximo-CPI</strong> includes a Cronie service that runs the script every hour</li>
+</ul></div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ibm-mas/mcpi" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../logging-collection/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../slack-notification-sample/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -34,7 +34,7 @@ The utility gathers only metrics data, excluding any sensitive information. It i
 - Support Rsyslogd Service to centralizes log collection, making log analysis more efficient.
 - Support Cronie Service
 - Support Supervisor Service to allows dynamic configuration changes, giving clients the flexibility to customize services on the fly
-- Maximo-CPI Prometheus Exporter and Dashboard (upcoming feature in 2.1)
-- Maximo-CPI DB Utility (upcoming feature in 2.1)
+- Maximo-CPI Prometheus Exporter and Dashboard
+- Maximo-CPI DB Utility
 
 

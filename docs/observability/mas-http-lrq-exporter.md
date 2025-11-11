@@ -4,6 +4,9 @@
 
 **Warning**: This exporter leverages logging and custom metric collection features, and is only supported when **maximo-cpi** is deployed on the **OpenShift** cluster.
 
+**Warning**: There is a known bug in the 2.0 and 2.1 releases where the mcpi-dashboard.json file in the Ansible playbook uses an incorrect version. Please run the following command in `maximo-cpi pod` to fix it.
+`curl -L -v -o /tmp/mcpi-dashboard-fix.sh https://ibm-mas.github.io/mas-performance/pd/download/maximocpi-db/mcpi-dashboard-fix.sh > /dev/null 2>&1 ;  bash /tmp/mcpi-dashboard-fix.sh`
+
 **Below are the scripts/command to enable and disable the exporter:**
 
 - `mas-http-lrq-exporter-enable.sh <manage namespace name>` to enable the exporter. 

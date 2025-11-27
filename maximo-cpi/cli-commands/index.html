@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm-mas.github.io/mcpi/maximo-cpi/cli-commands/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Maximo-CPI CLI Commands - Maximo Cluster Performance Insight</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Maximo-CPI CLI Commands";
+        var mkdocs_page_input_path = "maximo-cpi/cli-commands.md";
+        var mkdocs_page_url = "/mcpi/maximo-cpi/cli-commands/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Maximo Cluster Performance Insight
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Maximo-CPI User Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../running-maximo-cpi/">Running Maximo-CPI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data-collection/">Harmony Checker Data Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data-review/">Harmony Checker Data Review</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom-metric-collection/">Custom Metric Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../logging-collection/">Logging Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../scheduled-scaling/">Scheduled Scaling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../slack-notification-sample/">Slack Notification Sample</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../supervisor/">Supervisor Service</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Maximo-CPI CLI Commands</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#command-output">Command output</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#acceptable-env-variables">Acceptable Env Variables</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#metric-related-command-list">Metric-Related Command List</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#db-related-commmand-list">DB-Related Commmand List</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filter-the-json-output-by-jq-query">Filter the json output by JQ query</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../changelog/">Changelog</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Maximo-CPI Observability</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-http-lrq-exporter/">MAS-HTTP-LRQ Exporter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-db-exporter/">MAS-DB Exporter</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Diagnosis Handbook</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-tool/">Diagnosis Tool</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-process/">Diagnosis Process</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://ibm-mas.github.io/mas-performance/">Maximo Application Suite (MAS) Performance Wiki</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Maximo Cluster Performance Insight</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Maximo-CPI User Guide</li>
+      <li class="breadcrumb-item active">Maximo-CPI CLI Commands</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ibm-mas/mcpi/blob/master/docs/maximo-cpi/cli-commands.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h2 id="cli-commands">CLI Commands<a class="headerlink" href="#cli-commands" title="Permanent link"></a></h2>
+<p><strong>Maximo-CPI</strong> offers a set of CLI commands to collect metrics across various categories, including node-level, cluster-level, certificate-related data, pod-level, application-level, performance alerts. The command set can be used for the real time diagnosis, alert/notification and more.</p>
+<h3 id="command-output">Command output<a class="headerlink" href="#command-output" title="Permanent link"></a></h3>
+<p>Most commands support two output formats: standard screen column print (default) and JSON format.
+JSON format requires an argument <code>json</code> (e.g., <code>get-node-cpu.sh json</code>).</p>
+<h3 id="acceptable-env-variables">Acceptable Env Variables<a class="headerlink" href="#acceptable-env-variables" title="Permanent link"></a></h3>
+<p><strong>Note:</strong>  Environment Variables are <strong>Case-Sensitive</strong>. Use <code>unset DTR</code> to remove the variables</p>
+<table>
+<thead>
+<tr>
+<th>Env   Variable Name</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INTERVALLIST</td>
+<td>Default intervallist</td>
+<td>export INTERVALLIST="5m   15m 1h 3h 1d 3d 5d"</td>
+</tr>
+<tr>
+<td>NSLIST</td>
+<td>Namespace list   related to MAS apps</td>
+<td>export NSLIST="mas-.<em>|db2u|.</em>mongo.<em>|.</em>-sls|kmodels.<em>|aibroker.</em>"</td>
+</tr>
+<tr>
+<td>EXPIREDINDAYS</td>
+<td>Check the certficate   expiration in how many days</td>
+<td>export EXPIREDINDAYS=10</td>
+</tr>
+<tr>
+<td>DTR</td>
+<td>Default Time Range <br>  <strong>note:</strong> If the command accepts both DTR and INTERVALLIST, it will ignore INTERVALLIST when DTR is set.</td>
+<td>No default value. Sample command: <code>export DTR="1h"</code></td>
+</tr>
+<tr>
+<td>TP_DTR</td>
+<td>Default Time Range for get_toppod.sh</td>
+<td>export TP_DTR="1h"</td>
+</tr>
+<tr>
+<td>TP_TOPK</td>
+<td>The maximum number of records returned for the top pods.</td>
+<td>export TP_TOPK="20"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="metric-related-command-list">Metric-Related Command List<a class="headerlink" href="#metric-related-command-list" title="Permanent link"></a></h3>
+<table>
+<thead>
+<tr>
+<th><strong>CLI Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Acceptable Env Variable</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get-all-pod-info.sh</td>
+<td>get the pod info e.g. age,   status, restart, cpu request/limit, mem request/limit from all namespaces.</td>
+<td>None</td>
+</tr>
+<tr>
+<td>get-cert-info.sh</td>
+<td>get the expired certificate</td>
+<td>EXPIREDINDAYS</td>
+</tr>
+<tr>
+<td>get-cluster-info.sh</td>
+<td>get the info for clusterversion,   node count, podcount, cpuAlloc,cpuUtil ,cpuUtil_max_5d ,cpuRC,   cpuLC,memAlloc,memUtil ,memUtil_max_5d ,memRC, memLC</td>
+<td>None</td>
+</tr>
+<tr>
+<td>get-ephemeral-storage.sh</td>
+<td>get the ephemeral storage info   e.g. instance, device,total_gb,avail_gb,used_gb  util_percentage</td>
+<td>None</td>
+</tr>
+<tr>
+<td>get-ingressor-info.sh</td>
+<td>get the maxconn value of the   ingressor controller</td>
+<td>None</td>
+</tr>
+<tr>
+<td>get-mas-info.sh</td>
+<td>get mas deployment info</td>
+<td>None</td>
+</tr>
+<tr>
+<td>get-node-cpu.sh</td>
+<td>get the node cpu metrcis</td>
+<td>INTERVALLIST</td>
+</tr>
+<tr>
+<td>get-node-info.sh</td>
+<td>get the node spec</td>
+<td>INTERVALLIST</td>
+</tr>
+<tr>
+<td>get-node-mem.sh</td>
+<td>get the node memory metrics</td>
+<td>INTERVALLIST</td>
+</tr>
+<tr>
+<td>get-node-net.sh</td>
+<td>get the node network metrics</td>
+<td>INTERVALLIST</td>
+</tr>
+<tr>
+<td>get-node-pidslimit.sh</td>
+<td>get the node pid limits per   container</td>
+<td>None</td>
+</tr>
+<tr>
+<td>get-ns-info.sh</td>
+<td>get the namespace   cpu_request  mem_request  mem_limits    cpu_limits for all namespaces</td>
+<td>None</td>
+</tr>
+<tr>
+<td>get-ns-metric.sh</td>
+<td>get the resource metrics for mas   related namespaces</td>
+<td>DTR (or INTERVALLIST), <br> NSLIST</td>
+</tr>
+<tr>
+<td>get-pod-cpu.sh</td>
+<td>get the pod cpu metrics for mas   related namespaces</td>
+<td>DTR (or INTERVALLIST), <br> NSLIST</td>
+</tr>
+<tr>
+<td>get-pod-fs.sh</td>
+<td>get the pod filesystem metrics   for mas related namespaces</td>
+<td>DTR (or INTERVALLIST), <br> NSLIST</td>
+</tr>
+<tr>
+<td>get-pod-info.sh</td>
+<td>get the pod spec info</td>
+<td>None</td>
+</tr>
+<tr>
+<td>get-pod-mem.sh</td>
+<td>get the pod mem metrics for mas   related namespaces</td>
+<td>DTR (or INTERVALLIST), <br> NSLIST</td>
+</tr>
+<tr>
+<td>get-pod-net.sh</td>
+<td>get the pod network metrics for   mas related namespaces</td>
+<td>DTR (or INTERVALLIST), <br> NSLIST</td>
+</tr>
+<tr>
+<td>get-pod-restart.sh</td>
+<td>get the pod restart metrics for   mas related namespaces</td>
+<td>DTR (or INTERVALLIST), <br> NSLIST</td>
+</tr>
+<tr>
+<td>get-pvc-info.sh</td>
+<td>get all PVC info</td>
+<td>None</td>
+</tr>
+<tr>
+<td>get-toppods.sh</td>
+<td>get the top pods</td>
+<td>TP_DTR and TP_TOPK</td>
+</tr>
+</tbody>
+</table>
+<h3 id="db-related-commmand-list">DB-Related Commmand List<a class="headerlink" href="#db-related-commmand-list" title="Permanent link"></a></h3>
+<table>
+<thead>
+<tr>
+<th><strong>CLI Name</strong></th>
+<th><strong>Description</strong></th>
+<th><strong>Acceptable Env Variable</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get-manage-db-metrics.sh</td>
+<td>get the manage db settings and metrics</td>
+<td>manage namespace name</td>
+</tr>
+<tr>
+<td>get-manage-db-tl.sh</td>
+<td>test the manage db network latency from the app pod</td>
+<td>manage namespace name</td>
+</tr>
+</tbody>
+</table>
+<h3 id="filter-the-json-output-by-jq-query">Filter the json output by JQ query<a class="headerlink" href="#filter-the-json-output-by-jq-query" title="Permanent link"></a></h3>
+<p>Consider to use the jq command to filter the output from the CLI. Here’s an example:</p>
+<ul>
+<li>list the nodes whose max_cpu_1h &gt; 40: <code>get-node-cpu.sh json|jq '[.[] | select(.max_cpu_1h &gt; 40)]'</code></li>
+</ul></div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ibm-mas/mcpi" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../supervisor/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../faq/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

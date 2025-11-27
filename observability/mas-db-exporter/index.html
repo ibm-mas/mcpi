@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm-mas.github.io/mcpi/observability/mas-db-exporter/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>MAS-DB Exporter - Maximo Cluster Performance Insight</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "MAS-DB Exporter";
+        var mkdocs_page_input_path = "observability/mas-db-exporter.md";
+        var mkdocs_page_url = "/mcpi/observability/mas-db-exporter/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Maximo Cluster Performance Insight
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Maximo-CPI User Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/running-maximo-cpi/">Running Maximo-CPI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/data-collection/">Harmony Checker Data Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/data-review/">Harmony Checker Data Review</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/custom-metric-collection/">Custom Metric Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/logging-collection/">Logging Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/scheduled-scaling/">Scheduled Scaling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/slack-notification-sample/">Slack Notification Sample</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/supervisor/">Supervisor Service</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/cli-commands/">Maximo-CPI CLI Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../changelog/">Changelog</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Maximo-CPI Observability</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../mas-http-lrq-exporter/">MAS-HTTP-LRQ Exporter</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">MAS-DB Exporter</a>
+    <ul class="current">
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Diagnosis Handbook</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-tool/">Diagnosis Tool</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-process/">Diagnosis Process</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://ibm-mas.github.io/mas-performance/">Maximo Application Suite (MAS) Performance Wiki</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Maximo Cluster Performance Insight</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Maximo-CPI Observability</li>
+      <li class="breadcrumb-item active">MAS-DB Exporter</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ibm-mas/mcpi/blob/master/docs/observability/mas-db-exporter.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h2 id="mas-db-exporter">MAS-DB Exporter<a class="headerlink" href="#mas-db-exporter" title="Permanent link"></a></h2>
+<p><strong>Maximo-CPI</strong> offers several Prometheus exporters, including the <strong>MAS-DB Exporter</strong>. This exporter is used to collect DB metrics e.g. cpu, memory, cache hit ratio, direct reads writes. The exporter supports DB2, Oracle and MS SQL Server.</p>
+<p><strong>Warning</strong>: This exporter leverages logging and custom metric collection features, and is only supported when <strong>maximo-cpi</strong> is deployed on the <strong>OpenShift</strong> cluster.</p>
+<p><strong>Warning</strong>: There is a known bug in the 2.0 and 2.1 releases where the mcpi-dashboard.json file in the Ansible playbook uses an incorrect version. Please apply <a href="../../maximo-cpi/running-maximo-cpi/#apply-the-hotfix-for-v210-release">2.1.0 hotfix</a> to fix the issue. </p>
+<!--
+run the following command in `maximo-cpi pod` to fix it.
+`curl -L -v -o /tmp/mcpi-dashboard-fix.sh https://ibm-mas.github.io/mas-performance/pd/download/maximocpi-db/mcpi-dashboard-fix.sh > /dev/null 2>&1 ;  bash /tmp/mcpi-dashboard-fix.sh`
+-->
+
+<p><strong>Below are the scripts/command to enable and disable the exporter:</strong></p>
+<ul>
+<li><code>mas-manage-db-exporter-enable.sh &lt;manage namespace name&gt; &lt;db type&gt;</code> to enable the exporter. <strong>Note:</strong> Valid db type values are <strong>db2</strong>, <strong>ora</strong>, <strong>sqs</strong></li>
+<li><code>mas-manage-db-exporter-disable.sh &lt;manage namespace name&gt;</code> to disable the exporter. </li>
+</ul>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>The exporter supports multi-instances on the same cluster</li>
+<li>
+<p>The enable script:</p>
+<ul>
+<li>create scripts <code>mas-&lt;instance&gt;-manage-db-exporter</code> under <code>/opt/app-root/src/server/metricscript</code></li>
+<li>create and apply the podmonitor for <code>mas-&lt;instance&gt;-manage-db-exporter</code> in the cluster</li>
+</ul>
+</li>
+<li>
+<p>The disable script removes all the above scripts.</p>
+</li>
+</ul>
+<p><strong>Display the metrics</strong></p>
+<ul>
+<li>run <code>deploy-maximo-cpi-dashboard.sh</code> to import the dashboard</li>
+<li>Below is the dashboard snapshot sample
+<img alt="alt text" src="../mas-db-snapshot.png"></li>
+</ul></div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ibm-mas/mcpi" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../mas-http-lrq-exporter/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../diagnosis/diagnostic-tool/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

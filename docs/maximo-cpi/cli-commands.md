@@ -43,16 +43,16 @@ JSON format requires an argument `json` (e.g., `get-node-cpu.sh json`).
 | get-pod-net.sh           | get the pod network metrics for   mas related namespaces                                                                                                 | DTR (or INTERVALLIST), <br> NSLIST        |
 | get-pod-restart.sh       | get the pod restart metrics for   mas related namespaces                                                                                                 | DTR (or INTERVALLIST), <br> NSLIST        |
 | get-pvc-info.sh          | get all PVC info                                                                                                                                         | None                                |
-| get-toppods.sh           | get the top pods fron                                                                                                                                    |        TP_DTR and TP_TOPK           |
+| get-toppods.sh           | get the top pods                                                                                                                                     |        TP_DTR and TP_TOPK           |
 
 
 
 ### DB-Related Commmand List
 
-| **CLI Name**             | **Description**                                                                                                                                          | **Acceptable Env Variable**         |
-|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
-| get-manage-db-metrics.sh      | get the manage db settings and metrics                                                  | <manage namespace name>                                |
-| get-manage-db-tl.sh      | test the manage db network latency from the app pod                                                  | <manage namespace name>                                |
+| **CLI Name**                        |        **Description**                                         |        **Acceptable Env Variable** |
+|---------------------------------|------------------------------------------------------------|--------------------------------|
+|        get-manage-db-metrics.sh |        get the manage db settings and metrics              |        <manage namespace name> |
+|        get-manage-db-tl.sh      |        test the manage db network latency from the app pod |        <manage namespace name> |
 
 
 ### Filter the json output by JQ query

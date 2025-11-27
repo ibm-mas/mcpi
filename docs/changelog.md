@@ -1,5 +1,10 @@
 # Changelog
 
+### 2.1.0 hotfix (2025-11-23)
+- Update mcpi-dashboard.json file in the Ansible playbook
+- Add DB Utilities Scripts
+- Update the sample MAS-HTTP-LRQ Exporter configuration file by changing the filter pattern
+
 ### 2.1.0 (2025-06-23)
 - New Feature: MAS-HTTP-LRQ-Exporter
 - New Feature: Support MAS-DB-Exporter

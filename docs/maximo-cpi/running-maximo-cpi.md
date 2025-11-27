@@ -29,3 +29,9 @@ Maximo-CPI can be run in either **Docker** or **an OpenShift cluster**.
     - download [v1 deployment yaml](https://ibm-mas.github.io/mas-performance/pd/mcpi/maximo-cpi-deployment.yaml)
     - uninstall **maximo-cpi** by `oc delete -f maximo-cpi-deployment.yaml`
     - follow the steps in [Run in OpenShift](#run-in-openshift) to re-deploy maximo-cpi
+  
+### Apply the hotfix for v2.1.0 release
+
+- go to the **maximo-cpi pod**, then run `curl -L -v -o /tmp/mcpi-2.1.0-hotfix.sh https://ibm-mas.github.io/mas-performance/pd/download/mcpi/mcpi-2.1.0-hotfix.sh > /dev/null 2>&1; bash /tmp/mcpi-2.1.0-hotfix.sh`
+
+- check the [change log](../changelog.md/#210-hotfix-2025-11-23) for details

@@ -47,6 +47,14 @@ JSON format requires an argument `json` (e.g., `get-node-cpu.sh json`).
 
 
 
+### DB-Related Commmand List
+
+
+| **CLI Name**             | **Description**                                                                                                                                          | **Acceptable Env Variable**         |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------|
+| get-manage-db-metrics.sh      | get the manage db settings and metrics                                                  | <manage namespace name>                                |
+| get-manage-db-tl.sh      | test the manage db network latency from the app pod                                                  | <manage namespace name>                                |
+
 ### Filter the json output by JQ query
 
 Consider to use the jq command to filter the output from the CLI. Here’s an example:

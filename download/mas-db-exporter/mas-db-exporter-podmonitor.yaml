@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: mas-manage-db-exporter
+  namespace: maximo-cpi
+spec:
+  namespaceSelector:
+    matchNames:
+      - maximo-cpi
+  podMetricsEndpoints:
+    - interval: 60s
+      path: /collectmetrics?name=mas-manage-db-exporter
+      port: http
+      scrapeTimeout: 60s
+  selector:
+    matchLabels:
+      app: mcpi

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+source /opt/app-root/src/healthcheck/base.sh
+
+# 
+MAS_MANAGE_NS="mas-masinst1-manage"
+
+# verify mas namespace 
+if [ -n "$1" ]; then 
+    MAS_MANAGE_NS=$1
+fi
+
+PODNAME=$(oc get pods -n ${MAS_MANAGE_NS}|grep Running|grep maxinst|awk '{print $1}')
+#echo ${PODNAME}
+tmpjson=$(mktemp)
+oc cp /opt/app-root/src/db-exporter/mas-db-exporter.sh ${MAS_MANAGE_NS}/${PODNAME}:/tmp/mas-db-exporter.sh 2>/dev/null
+oc exec -n ${MAS_MANAGE_NS} ${PODNAME} -- bash -c "bash /tmp/mas-db-exporter.sh" > ${tmpjson}
+
+# prometheus output
+echo "# HELP mas_manage_db_metric MAS Manage DB Metric"
+echo "# TYPE mas_manage_db_metric gauge"
+
+#stats for total host cpu usage, unit is %
+rc=$(jq -r '.log.envsysresource[] |select(.NAME == "CPU_USAGE_TOTAL") | .VALUE' ${tmpjson})
+echo "mas_manage_db_metric{mas_namespace=\"${MAS_MANAGE_NS}\",db_type=\"db2\",metric_name=\"cpu_usage_total\"} ${rc}"
+
+#stats for total host cpu, unit is cores
+rc=$(jq -r '.log.envsysresource[] |select(.NAME == "CPU_TOTAL") | .VALUE' ${tmpjson})
+echo "mas_manage_db_metric{mas_namespace=\"${MAS_MANAGE_NS}\",db_type=\"db2\",metric_name=\"cpu_total\"} ${rc}"
+
+#stats for workload, unit is decimal
+rc=$(jq -r '.log.workload[0].TOTAL_APP_COMMITS' ${tmpjson})
+echo "mas_manage_db_metric{mas_namespace=\"${MAS_MANAGE_NS}\",db_type=\"db2\",metric_name=\"workload\"} ${rc}"
+
+# clean up 
+rm -rf ${tmpjson}

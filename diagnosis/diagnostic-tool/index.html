@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm-mas.github.io/mcpi/diagnosis/diagnostic-tool/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Diagnosis Tool - Maximo Cluster Performance Insight</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Diagnosis Tool";
+        var mkdocs_page_input_path = "diagnosis/diagnostic-tool.md";
+        var mkdocs_page_url = "/mcpi/diagnosis/diagnostic-tool/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Maximo Cluster Performance Insight
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Maximo-CPI User Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/running-maximo-cpi/">Running Maximo-CPI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/data-collection/">Harmony Checker Data Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/data-review/">Harmony Checker Data Review</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/custom-metric-collection/">Custom Metric Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/logging-collection/">Logging Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/scheduled-scaling/">Scheduled Scaling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/slack-notification-sample/">Slack Notification Sample</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/supervisor/">Supervisor Service</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../maximo-cpi/cli-commands/">Maximo-CPI CLI Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../changelog/">Changelog</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Maximo-CPI Observability</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-http-lrq-exporter/">MAS-HTTP-LRQ Exporter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-db-exporter/">MAS-DB Exporter</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Diagnosis Handbook</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Diagnosis Tool</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#app-diagnostic-utilities">App Diagnostic Utilities</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#db-diagnostic-utilities">DB Diagnostic Utilities</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#misc">Misc</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../diagnostic-process/">Diagnosis Process</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://ibm-mas.github.io/mas-performance/">Maximo Application Suite (MAS) Performance Wiki</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Maximo Cluster Performance Insight</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Diagnosis Handbook</li>
+      <li class="breadcrumb-item active">Diagnosis Tool</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ibm-mas/mcpi/blob/master/docs/diagnosis/diagnostic-tool.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h2 id="diagnostic-tool">Diagnostic Tool<a class="headerlink" href="#diagnostic-tool" title="Permanent link"></a></h2>
+<h3 id="app-diagnostic-utilities">App Diagnostic Utilities<a class="headerlink" href="#app-diagnostic-utilities" title="Permanent link"></a></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong>                  </th>
+<th><strong>Description</strong></th>
+<th><strong>Used For</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://pages.github.ibm.com/maximo/performance-wiki/misc/flamegraphs/manage-simple-profiling.html">Flame Graphs</a></td>
+<td>A simple profiling <strong>(for IBM Internal Only)</strong>.</td>
+<td>app jvm/pod slowness and high cpu</td>
+</tr>
+<tr>
+<td><a href="https://pages.github.ibm.com/maximo/performance-wiki/misc/ihc/manage-java-profiling-ihc.html">IBM Health Center</a></td>
+<td>A java profiling tool</td>
+<td>app jvm/pod slowness and high cpu (offering more detailed insights beyond Flame Graphs)</td>
+</tr>
+<tr>
+<td><a href="https://www.ibm.com/support/pages/enabling-and-disabling-maximo-activity-dashboard-maximo-75-and-maximo-76">Maximo Perfmon</a></td>
+<td>Maximo Activity Dashboard<br><strong>Note:</strong> Enabling PerfMon may significantly degrade server performance <br> <strong>Recommend</strong> for a single user with Dev/Test env only</td>
+<td>Maximo UI Activity Tracing</td>
+</tr>
+<tr>
+<td><a href="https://wiki.eclipse.org/MemoryAnalyzer/">MAT</a></td>
+<td>MemoryAnalyzer</td>
+<td>JVM Dump Analysis</td>
+</tr>
+<tr>
+<td><a href="https://chromewebstore.google.com/detail/http-archive-viewer/ebbdbdmhegaoooipfnjikefdpeoaidml?hl=en">HTTP Archive Viewer </a></td>
+<td>HAR Analysis - for web page and client side (browser) performance</td>
+<td>Maximo API and UI Activity Tracing</td>
+</tr>
+<tr>
+<td><a href="https://ibm-mas.github.io/mas-performance/pd/pingtest/">Maximo Ping Test Utility</a></td>
+<td>A maximo ping service to idenify the timeout limit.</td>
+<td>Detect the transacton timeout limit E.g. external gateways</td>
+</tr>
+</tbody>
+</table>
+<h3 id="db-diagnostic-utilities">DB Diagnostic Utilities<a class="headerlink" href="#db-diagnostic-utilities" title="Permanent link"></a></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong>                  </th>
+<th><strong>Description</strong></th>
+<th><strong>Used For</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://ibm-mas.github.io/mas-performance/pd/dbtest/">DBTest</a></td>
+<td>A simple utility that can run in the MAS Manage Pod for measuring SQL execution time, database network latency, and data fetching duration.</td>
+<td>- identify the network issue between db and UI test <br> - execute the query</td>
+</tr>
+<tr>
+<td><a href="">maximocpi-db</a></td>
+<td>An utility to collect db metrics, test network latency and execute sql</td>
+<td>- collect db configurations and metrics <br> - identify the network issue between db and UI test <br> - execute the query</td>
+</tr>
+<tr>
+<td><a href="https://ibm-mas.github.io/mas-performance/pd/db2-performance-diagnosis/#ibm-data-server-manager-ibm-dsm">IBM DSM </a></td>
+<td><strong>DB2</strong> Troublshooting tool</td>
+<td>- Historical and Realtime Troubleshooting</td>
+</tr>
+<tr>
+<td><a href="https://ibm-mas.github.io/mas-performance/pd/db2-performance-diagnosis/#db2top">db2top and other cmds </a></td>
+<td><strong>DB2</strong> Troublshooting commands</td>
+<td>- Realtime Troubleshooting</td>
+</tr>
+<tr>
+<td>AWR, StatsPack</td>
+<td><strong>Oracle DB</strong> Troublshooting</td>
+<td>- collect db metrics and performance diagnosis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="misc">Misc<a class="headerlink" href="#misc" title="Permanent link"></a></h3>
+<table>
+<thead>
+<tr>
+<th><strong>Name</strong>                  </th>
+<th><strong>Description</strong></th>
+<th><strong>Used For</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://poorsql.com/">Poor SQL</a></td>
+<td>Online SQL Formatter</td>
+<td>Format SQL with an elegant presentation.</td>
+</tr>
+<tr>
+<td><a href="https://www.sslshopper.com/">SSL Shopper</a></td>
+<td>Online certificate decode tool</td>
+<td>decode the certificate</td>
+</tr>
+<tr>
+<td><a href="http://squirrel-sql.sourceforge.net/">Squirrl</a></td>
+<td>Universal SQL Client</td>
+<td>SQL Execution, SQL Explain...</td>
+</tr>
+<tr>
+<td><a href="https://ibm-mas.github.io/mas-performance/mas/mongodb/bestpractice/#mongodb-troubleshoot">mongotop, mongostat</a></td>
+<td>MongoDB Realtime Troubleshooting</td>
+<td>troubleshoot mongodb performance e.g. slow queries</td>
+</tr>
+<tr>
+<td><a href="https://access.redhat.com/solutions/276533">sar</a></td>
+<td>a system command be used to monitor system resources like cpu, memory, disk, network...</td>
+<td>troubleshoot the storage class performance</td>
+</tr>
+</tbody>
+</table></div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ibm-mas/mcpi" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../../observability/mas-db-exporter/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../diagnostic-process/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

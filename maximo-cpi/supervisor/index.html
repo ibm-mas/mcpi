@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm-mas.github.io/mcpi/maximo-cpi/supervisor/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Supervisor Service - Maximo Cluster Performance Insight</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Supervisor Service";
+        var mkdocs_page_input_path = "maximo-cpi/supervisor.md";
+        var mkdocs_page_url = "/mcpi/maximo-cpi/supervisor/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Maximo Cluster Performance Insight
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Maximo-CPI User Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../running-maximo-cpi/">Running Maximo-CPI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data-collection/">Harmony Checker Data Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data-review/">Harmony Checker Data Review</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom-metric-collection/">Custom Metric Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../logging-collection/">Logging Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../scheduled-scaling/">Scheduled Scaling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../slack-notification-sample/">Slack Notification Sample</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Supervisor Service</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#useful-commands">Useful Commands</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#add-a-new-service">Add a new service</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cli-commands/">Maximo-CPI CLI Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../changelog/">Changelog</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Maximo-CPI Observability</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-http-lrq-exporter/">MAS-HTTP-LRQ Exporter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-db-exporter/">MAS-DB Exporter</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Diagnosis Handbook</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-tool/">Diagnosis Tool</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-process/">Diagnosis Process</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://ibm-mas.github.io/mas-performance/">Maximo Application Suite (MAS) Performance Wiki</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Maximo Cluster Performance Insight</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Maximo-CPI User Guide</li>
+      <li class="breadcrumb-item active">Supervisor Service</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ibm-mas/mcpi/blob/master/docs/maximo-cpi/supervisor.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><h2 id="supervisor-service">Supervisor Service<a class="headerlink" href="#supervisor-service" title="Permanent link"></a></h2>
+<p><strong>Maximo-CPI</strong> uses <a href="https://supervisord.org/introduction.html">Supervisor</a> to manage the services running inside the container. The main services include <code>crond</code>, <code>rsyslogd</code> and <code>viewer-server</code>. The config file locates at<code>/etc/supervisor/cron.d/mcpi.conf</code>. <br><br>
+Below is the Code Snippet for the current setting:</p>
+<div class="highlight"><pre><span></span><code>[program:crond]
+command = crond
+priority = 100
+autostart = true
+startsecs = 10
+startretries = 100
+autorestart = true
+stopsignal = QUIT
+stopwaitsecs = 30
+stdout_logfile = /var/log/supervisor/%(program_name)s.log
+stderr_logfile = /var/log/supervisor/%(program_name)s.log
+
+[program:rsyslogd]
+command = rsyslogd -n -i /var/log/rsyslog/rsyslogd.pid
+priority = 100
+autostart = true
+startsecs = 10
+startretries = 100
+autorestart = true
+stopsignal = QUIT
+stopwaitsecs = 30
+stdout_logfile = /var/log/supervisor/%(program_name)s.log
+stderr_logfile = /var/log/supervisor/%(program_name)s.log
+
+
+[program:viewer-server]
+directory=/opt/app-root/src/server
+command = python rca.py
+priority = 100
+autostart = true
+startsecs = 10
+startretries = 100
+autorestart = true
+stopsignal = QUIT
+stopwaitsecs = 30
+stdout_logfile = /var/log/supervisor/%(program_name)s.log
+stderr_logfile = /var/log/supervisor/%(program_name)s.log
+</code></pre></div>
+<h3 id="useful-commands">Useful Commands<a class="headerlink" href="#useful-commands" title="Permanent link"></a></h3>
+<ul>
+<li><code>supervisorctl star/stop/restart &lt;servicename&gt;</code>: used to start/stop/restart the service after the configuration change. e.g. <code>supervisorctl restart rsyslogd</code></li>
+<li><code>supervisorctl reread</code>: used to reads new or updated program configurations from the Supervisor config files. </li>
+<li><code>supercisorctl update</code>: used to reloads and applies changes from updated configuration files.</li>
+</ul>
+<h3 id="add-a-new-service">Add a new service<a class="headerlink" href="#add-a-new-service" title="Permanent link"></a></h3>
+<p><strong>Maximo-CPI</strong> pre-installed filebeat. Below are the steps how to add filebeat into the supervisor service:</p>
+<ul>
+<li>update filebeat config file <code>/opt/app-root/src/conf/filebeat/filebeat.yml</code>, then copy it to <code>/etc/filebeat/filebeat.yml</code></li>
+<li>update the filebeat-supervisor config file <code>/opt/app-root/src/conf/filebeat/filebeat.conf</code> if needed, then copy it to <code>/etc/supervisor/conf.d</code></li>
+<li>re-read the supervisor service: <code>supervisorctl reread</code></li>
+<li>reload the supervisor service: <code>supercisorctl update</code></li>
+<li>start the filebeat service: <code>supercisorctl start filebeat</code></li>
+</ul></div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ibm-mas/mcpi" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../slack-notification-sample/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../cli-commands/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

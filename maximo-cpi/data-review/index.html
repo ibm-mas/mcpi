@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><link rel="canonical" href="https://ibm-mas.github.io/mcpi/maximo-cpi/data-review/" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Harmony Checker Data Review - Maximo Cluster Performance Insight</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Harmony Checker Data Review";
+        var mkdocs_page_input_path = "maximo-cpi/data-review.md";
+        var mkdocs_page_url = "/mcpi/maximo-cpi/data-review/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/yaml.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> Maximo Cluster Performance Insight
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Maximo-CPI User Guide</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../running-maximo-cpi/">Running Maximo-CPI</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../data-collection/">Harmony Checker Data Collection</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Harmony Checker Data Review</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../custom-metric-collection/">Custom Metric Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../logging-collection/">Logging Collection</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../scheduled-scaling/">Scheduled Scaling</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../slack-notification-sample/">Slack Notification Sample</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../supervisor/">Supervisor Service</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cli-commands/">Maximo-CPI CLI Commands</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../../changelog/">Changelog</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Maximo-CPI Observability</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-http-lrq-exporter/">MAS-HTTP-LRQ Exporter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../observability/mas-db-exporter/">MAS-DB Exporter</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Diagnosis Handbook</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-tool/">Diagnosis Tool</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../diagnosis/diagnostic-process/">Diagnosis Process</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="https://ibm-mas.github.io/mas-performance/">Maximo Application Suite (MAS) Performance Wiki</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">Maximo Cluster Performance Insight</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Maximo-CPI User Guide</li>
+      <li class="breadcrumb-item active">Harmony Checker Data Review</li>
+    <li class="wy-breadcrumbs-aside">
+          <a href="https://github.com/ibm-mas/mcpi/blob/master/docs/maximo-cpi/data-review.md" class="icon icon-github"> Edit on GitHub</a>
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <div><p><strong>Maximo-CPI Harmony Checker</strong> is a new utility that use short and long term snapshots to addresses specific best practices for deployment of Maximo App Suite. It can assist in pinpointing areas that need improvement and provide actionable insights for optimizing the MAS deployment. </p>
+<h3 id="harmony-check-data-review">Harmony Check Data Review<a class="headerlink" href="#harmony-check-data-review" title="Permanent link"></a></h3>
+<ul>
+<li>
+<p>Record or download the collection json file path. When <a href="../data-collection/">Data collection process</a> is completed, it returns the path to the MHC JSON file. </p>
+</li>
+<li>
+<p>Review the json file:</p>
+<ul>
+<li>
+<p><strong>in docker</strong>:</p>
+<ul>
+<li>Launch the mcpi viewer url (<a href="http://localhost:8888">http://localhost:8888</a>) in the browser</li>
+<li>review the data: Under Load a MAS Harmony Checker JSON file from the server's path, enter the path to the MHC JSON file e.g. /tmp/mhc-2024-08-01-19-36.json Below is the sample snapshot 
+<img alt="alt text" src="../data-review.png"></li>
+</ul>
+</li>
+<li>
+<p><strong>in openshift</strong>:</p>
+<ul>
+<li>go to maximo-cpi project -&gt; Networking -&gt; Routes</li>
+<li>click on mcpi-viewer-route url</li>
+<li>review the data: Under Load a MAS Harmony Checker JSON file from the server's path, enter the path to the MHC JSON file e.g. /tmp/mhc-2024-08-01-19-36.json.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="tab-details">Tab Details<a class="headerlink" href="#tab-details" title="Permanent link"></a></h3>
+<table>
+<thead>
+<tr>
+<th>Tab Name</th>
+<th>Coverage</th>
+<th>Use Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cluster</td>
+<td>Compute   Resources Statistics (e.g. over-commit ratio); best practice recommendations;   performance alerts</td>
+<td>- Identify   any missing or incorrect settings that not follows MAS Best Practice <br> -  Verify the overall cluster resource allocation and justify if the cluster is over/under provisioned <br> - Identify performance alerts, configuration correction</td>
+</tr>
+<tr>
+<td>Nodes</td>
+<td>Node Status, Resource   Statistics</td>
+<td>- Identify performance   issues at the node level. <br> - Understand the resource usage trendency at the node level.</td>
+</tr>
+<tr>
+<td>Namespaces   &amp; Pod Spec</td>
+<td>Aggregate resources   by namespace and pods.</td>
+<td>- Identify resource allocations by namespace or pod <br> - Used for prediction development</td>
+</tr>
+<tr>
+<td>Certificate</td>
+<td>Identify certificates   that have expired or are about to expire</td>
+<td>Certificate renewal  configuration and alerts</td>
+</tr>
+<tr>
+<td>MAS Deployment</td>
+<td>Cluster-wide MAS   Deployment Status and Statistic</td>
+<td>Identify the   deployment version and any failure status app at the cluster level. Suitable for multi-deployment environments.</td>
+</tr>
+<tr>
+<td>MAS Namespaces   &amp; Pods</td>
+<td>Aggregate resources   statistics by MAS-related namespace and pods only</td>
+<td>- Understand the resource usage trendency at the node level. <br> - Identify performance issues at the application/pod level by usage details. (<strong>Second Step</strong>)</td>
+</tr>
+<tr>
+<td>Performance   Analytics</td>
+<td>Performance Alert   Heatmap; Performance Message Details</td>
+<td>- Identify performance issues at the application/pod level (<strong>First Step</strong>)</td>
+</tr>
+<tr>
+<td>Resource   Optimization</td>
+<td>Pod Resource   Adjustment Recommendation to reduce footprint</td>
+<td>Reducing   resource requests to minimize the overall deployment footprint.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>List the insights of   Ephemeral Storage and Persistent Volume Claims</td>
+<td>Identify the Storage usage, availability troubleshooting, analysis, and alerts.</td>
+</tr>
+<tr>
+<td>About</td>
+<td>List the current   version, Harmony Checker environment variables, and Node/Pod counts.</td>
+<td>Verify the utility version, default setting and filter</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="use-cases-minimizing-footprint">Use Cases: Minimizing footprint<a class="headerlink" href="#use-cases-minimizing-footprint" title="Permanent link"></a></h3>
+<ul>
+<li>Step 1: Eliminate the surplus nodes if exist</li>
+<li>Step 2: Balance CPU and Memory Request%; Align CPU and Memory Requests to match hardware specifications, such as a ratio of 1:4 or 1:8.</li>
+<li>Step 3: Continuously reduce the resource requests for pods/containers to enhance utilization. Ideally, aim for resource utilization that exceeds the resource requests and approaches 60–70% of the cluster capacity.</li>
+<li>Repeat Step 1 – 3 if needed</li>
+</ul>
+<h3 id="use-case-performance-troubleshooting-and-configuration-checking">Use Case: Performance troubleshooting and configuration checking<a class="headerlink" href="#use-case-performance-troubleshooting-and-configuration-checking" title="Permanent link"></a></h3>
+<ul>
+<li>Step 1: Heatmap viewer provides the problematic pods and nodes</li>
+<li>Step 2: Maximo CPI viewer provides the metric details </li>
+<li>Step 3: Identify the severity and functional impacts</li>
+<li>Step 4: Vertically and horizontally adjust the pod/service/node and apply the recommended OpenShift Configuration if needed</li>
+<li>Repeat Step 1 – 4 if needed</li>
+</ul></div>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/ibm-mas/mcpi" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../data-collection/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../custom-metric-collection/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

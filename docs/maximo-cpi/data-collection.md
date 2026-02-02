@@ -1,4 +1,4 @@
-**Maximo-CPI Harmony Checker** is a new utility that use short and long term snapshots to addresses specific best practices for deployment of Maximo App Suite. It can assist in pinpointing areas that need improvement and provide actionable insights for optimizing the MAS deployment. 
+**Maximo-CPI Harmony Checker** is a new utility that use short and long term snapshots to address specific best practices for deployment of Maximo App Suite. It can assist in pinpointing areas that need improvement and provide actionable insights for optimizing the MAS deployment. 
 
 ### Harmony Checker Data Collection
 
